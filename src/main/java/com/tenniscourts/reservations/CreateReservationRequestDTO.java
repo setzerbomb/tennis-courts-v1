@@ -1,5 +1,6 @@
 package com.tenniscourts.reservations;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,5 +23,8 @@ public class CreateReservationRequestDTO {
 
     @NotNull
     private Long scheduleId;
+
+    @JsonIgnore
+    private Long previousReservation;
 
 }

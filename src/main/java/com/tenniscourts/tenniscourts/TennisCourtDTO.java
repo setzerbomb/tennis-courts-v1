@@ -21,7 +21,7 @@ public class TennisCourtDTO {
 
     private Long id;
 
-    @NotNull
+    @NotNull(message="Name should be provided")
     private String name;
 
     private List<ScheduleDTO> tennisCourtSchedules;
