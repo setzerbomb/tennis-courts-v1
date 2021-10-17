@@ -34,6 +34,8 @@ public class ReservationDTO {
 
     private BigDecimal value;
 
+    private BigDecimal tax;
+
     @NotNull
     private Long scheduledId;
 

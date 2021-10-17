@@ -34,7 +34,9 @@ public class ReservationService {
                         .build())
         );
 
-        reservation.setValue(BigDecimal.valueOf(10));
+        reservation.setTax(BigDecimal.valueOf(10));
+        reservation.setRefundValue(BigDecimal.valueOf(10));
+        reservation.setValue(BigDecimal.valueOf(0));
 
         if (Objects.nonNull(createReservationRequestDTO.getPreviousReservation()))
             reservation.setPreviousReservationId(createReservationRequestDTO.getPreviousReservation());
@@ -67,7 +69,7 @@ public class ReservationService {
 
     private Reservation updateReservation(Reservation reservation, BigDecimal refundValue, ReservationStatus status) {
         reservation.setReservationStatus(status);
-        reservation.setValue(reservation.getValue().subtract(refundValue));
+        reservation.setValue(reservation.getTax().subtract(refundValue));
         reservation.setRefundValue(refundValue);
 
         return reservationRepository.save(reservation);
