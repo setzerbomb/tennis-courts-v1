@@ -2,21 +2,25 @@ package com.tenniscourts.tenniscourts;
 
 import com.tenniscourts.config.BaseRestController;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/tenniscourts")
+@RequestMapping("/tennis-courts")
 @AllArgsConstructor
+@Log4j2
 public class TennisCourtController extends BaseRestController {
 
     private final TennisCourtService tennisCourtService;
 
     @PostMapping
     public ResponseEntity<Void> addTennisCourt(@Valid @RequestBody TennisCourtDTO tennisCourtDTO) {
-        return ResponseEntity.created(locationByEntity(tennisCourtService.addTennisCourt(tennisCourtDTO).getId())).build();
+        var tc = tennisCourtService.addTennisCourt(tennisCourtDTO);
+
+        return ResponseEntity.created(locationByEntity(tc.getId())).build();
     }
 
     @GetMapping(value = "/{tennisCourtId}")
